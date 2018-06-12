@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @ComponentScan("cn.qiuyiping.wechat")
 @SpringBootApplication
 @EnableScheduling
-@ServletComponentScan({"cn.qiuyiping.wechat.filter", "cn.qiuyiping.wechat.interceptor"})
+@ServletComponentScan({"cn.qiuyiping.wechat.filter"})
 public class Main {
 
     @RequestMapping("/")
