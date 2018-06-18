@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qiuyiping.wechat.weather.mapper.WeatherWarningMapper">
+
+    <sql id="colSql">
+        id as id,
+        area as area,
+        area_code as areaCode,
+        url as url,
+        warning_time as warningTime,
+        warning_type as warningType,
+        warning_level as warningLevel,
+        warning_content as warningContent
+    </sql>
+
+    <insert id="insert" parameterType="cn.qiuyiping.wechat.weather.entity.WeatherWarning">
+        insert into weather_warning
+        (
+            area,
+            area_code,
+            url,
+            warning_time,
+            warning_type,
+            warning_level,
+            warning_content
+        )
+        values
+        (
+            #{area},
+            #{areaCode},
+            #{url},
+            #{warningTime},
+            #{warningType},
+            #{warningLevel},
+            #{warningContent}
+        )
+    </insert>
+
+    <select id="findByUrl" parameterType="cn.qiuyiping.wechat.weather.entity.WeatherWarning" resultType="cn.qiuyiping.wechat.weather.entity.WeatherWarning">
+        select
+        <include refid="colSql"/>
+        from weather_warning
+        <where>
+            url = #{url}
+        </where>
+    </select>
+
+    <select id="listByUrls" parameterType="cn.qiuyiping.wechat.weather.entity.WeatherWarning" resultType="cn.qiuyiping.wechat.weather.entity.WeatherWarning">
+        select
+        <include refid="colSql"/>
+        from weather_warning
+        <where>
+            url in
+            <foreach collection="urlArray" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+</mapper>

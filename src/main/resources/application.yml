@@ -4,11 +4,23 @@ server:
     context-path: /wechat
 
 spring:
-    redis:
-      host: 47.75.47.142
-      port: 6379
-      password: redis
-  #    sentinel:
-  #      master: ovft_master
-  #      nodes: 192.168.2.58:26379,192.168.2.59:26379,192.168.2.60:26379
-  #    password: ovfintech
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.75.47.142:3306/message_push
+    username: root
+    password: root
+  redis:
+    host: 47.75.47.142
+    port: 6379
+    password: redis
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+logging:
+  level:
+    cn.qiuyiping: debug
+wechat:
+  appid: wx0c10216cc6471ee7
+  secret: f4d06bacdce7fe6a2de1e72c6502a6e3
+  touser: oUeD70pmQe4XmeqgkMwpnI4lFJuE
+  weather-model-id: ex50qZksqhMmfDv5HhAeGM8dSUbp5UoLVVEfJF24h-s
